@@ -1,0 +1,268 @@
+DML
+--------
+
+1.INSERT
+----------------
+syntax
+-----------
+insert into table-name(column-names)values(column-values);
+
+mysql> use da4;
+Database changed
+mysql> desc employees;
++-----------+--------------+------+-----+---------+-------+
+| Field     | Type         | Null | Key | Default | Extra |
++-----------+--------------+------+-----+---------+-------+
+| EMPID     | char(5)      | YES  |     | NULL    |       |
+| FIRSTNAME | varchar(30)  | YES  |     | NULL    |       |
+| LASTNAME  | varchar(100) | YES  |     | NULL    |       |
+| AGE       | int          | YES  |     | NULL    |       |
+| DOJ       | date         | YES  |     | NULL    |       |
+| ADDRESS   | tinytext     | YES  |     | NULL    |       |
+| DEPT      | varchar(50)  | YES  |     | NULL    |       |
++-----------+--------------+------+-----+---------+-------+
+7 rows in set (0.01 sec)
+
+mysql> INSERT INTO EMPLOYEES(EMPID,FIRSTNAME,LASTNAME,AGE,DOJ,ADDRESS,DEPT)VALUES
+    -> ('E0001','HARIKA','PRIYADARSHINI',21,'2004-09-09','VIZAG','PYTHON');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> SELECT*FROM EMPLOYEES;
++-------+-----------+---------------+------+------------+---------+--------+
+| EMPID | FIRSTNAME | LASTNAME      | AGE  | DOJ        | ADDRESS | DEPT   |
++-------+-----------+---------------+------+------------+---------+--------+
+| E0001 | HARIKA    | PRIYADARSHINI |   21 | 2004-09-09 | VIZAG   | PYTHON |
++-------+-----------+---------------+------+------------+---------+--------+
+1 row in set (0.00 sec)
+
+mysql> INSERT INTO EMPLOYEES(EMPID,FIRSTNAME,LASTNAME,AGE,DOJ,ADDRESS,DEPT)VALUES
+    -> ('E0002','HARI','KIRAN',23,'2014-09-09','VIZAG','SALES'),
+    -> ('E0003','SAI','KIRAN',23,'2022-10-10','HYD','HR');
+Query OK, 2 rows affected (0.01 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> SELECT*FROM EMPLOYEES;
++-------+-----------+---------------+------+------------+---------+--------+
+| EMPID | FIRSTNAME | LASTNAME      | AGE  | DOJ        | ADDRESS | DEPT   |
++-------+-----------+---------------+------+------------+---------+--------+
+| E0001 | HARIKA    | PRIYADARSHINI |   21 | 2004-09-09 | VIZAG   | PYTHON |
+| E0002 | HARI      | KIRAN         |   23 | 2014-09-09 | VIZAG   | SALES  |
+| E0003 | SAI       | KIRAN         |   23 | 2022-10-10 | HYD     | HR     |
++-------+-----------+---------------+------+------------+---------+--------+
+3 rows in set (0.00 sec)
+
+mysql> INSERT INTO EMPLOYEES(EMPID,FIRSTNAME,LASTNAME,AGE,DOJ,ADDRESS,DEPT)VALUES
+    -> ('E0001','PAVAN','KUMAR',24,'2004-11-15','CHENNAI','HR EXECUTIVE'),
+    -> ^C
+mysql> INSERT INTO EMPLOYEES(EMPID,FIRSTNAME,LASTNAME,AGE,DOJ,ADDRESS,DEPT)VALUES
+    -> ('E0004','PAVAN','KUMAR',24,'2004-11-15','CHENNAI','HR EXECUTIVE'),
+    -> ('E0005','SAI','TEJA',24,'2024-11-26','BENGLURU','PRODUCT MANAGER');
+Query OK, 2 rows affected (0.01 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> SELECT*FROM EMPLOYEES;
++-------+-----------+---------------+------+------------+----------+-----------------+
+| EMPID | FIRSTNAME | LASTNAME      | AGE  | DOJ        | ADDRESS  | DEPT            |
++-------+-----------+---------------+------+------------+----------+-----------------+
+| E0001 | HARIKA    | PRIYADARSHINI |   21 | 2004-09-09 | VIZAG    | PYTHON          |
+| E0002 | HARI      | KIRAN         |   23 | 2014-09-09 | VIZAG    | SALES           |
+| E0003 | SAI       | KIRAN         |   23 | 2022-10-10 | HYD      | HR              |
+| E0004 | PAVAN     | KUMAR         |   24 | 2004-11-15 | CHENNAI  | HR EXECUTIVE    |
+| E0005 | SAI       | TEJA          |   24 | 2024-11-26 | BENGLURU | PRODUCT MANAGER |
++-------+-----------+---------------+------+------------+----------+-----------------+
+5 rows in set (0.00 sec)
+mysql> INSERT INTO EMPLOYEES(FIRSTNAME,DOJ,AGE,DEPT,ADDRESS,LASTNAME,EMPID)VALUES
+    -> ('RAGHAVA','2016-11-11',27,'PHARMA','VIZAG','RAO','E0006');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> SELECT*FROM EMPLOYEES;
++-------+-----------+---------------+------+------------+----------+-----------------+
+| EMPID | FIRSTNAME | LASTNAME      | AGE  | DOJ        | ADDRESS  | DEPT            |
++-------+-----------+---------------+------+------------+----------+-----------------+
+| E0001 | HARIKA    | PRIYADARSHINI |   21 | 2004-09-09 | VIZAG    | PYTHON          |
+| E0002 | HARI      | KIRAN         |   23 | 2014-09-09 | VIZAG    | SALES           |
+| E0003 | SAI       | KIRAN         |   23 | 2022-10-10 | HYD      | HR              |
+| E0004 | PAVAN     | KUMAR         |   24 | 2004-11-15 | CHENNAI  | HR EXECUTIVE    |
+| E0005 | SAI       | TEJA          |   24 | 2024-11-26 | BENGLURU | PRODUCT MANAGER |
+| E0006 | RAGHAVA   | RAO           |   27 | 2016-11-11 | VIZAG    | PHARMA          |
++-------+-----------+---------------+------+------------+----------+-----------------+
+6 rows in set (0.00 sec)
+
+mysql> INSERT INTO EMPLOYEES
+    -> VALUES
+    -> ('E0007','SAI','VARDHAN',25,'2016-12-23','HYD','PYTHON');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> SELECT*FROM EMPLOYEES;
++-------+-----------+---------------+------+------------+----------+-----------------+
+| EMPID | FIRSTNAME | LASTNAME      | AGE  | DOJ        | ADDRESS  | DEPT            |
++-------+-----------+---------------+------+------------+----------+-----------------+
+| E0001 | HARIKA    | PRIYADARSHINI |   21 | 2004-09-09 | VIZAG    | PYTHON          |
+| E0002 | HARI      | KIRAN         |   23 | 2014-09-09 | VIZAG    | SALES           |
+| E0003 | SAI       | KIRAN         |   23 | 2022-10-10 | HYD      | HR              |
+| E0004 | PAVAN     | KUMAR         |   24 | 2004-11-15 | CHENNAI  | HR EXECUTIVE    |
+| E0005 | SAI       | TEJA          |   24 | 2024-11-26 | BENGLURU | PRODUCT MANAGER |
+| E0006 | RAGHAVA   | RAO           |   27 | 2016-11-11 | VIZAG    | PHARMA          |
+| E0007 | SAI       | VARDHAN       |   25 | 2016-12-23 | HYD      | PYTHON          |
++-------+-----------+---------------+------+------------+----------+-----------------+
+7 rows in set (0.00 sec)
+
+mysql> INSERT INTO EMPLOYEES(EMPID,FIRSTNAME,DOJ,DEPT)
+    -> VALUES
+    -> ('E008','ARJUN','2023-06-15','MARKETING');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> SELECT*FROM EMPLOYEES;
++-------+-----------+---------------+------+------------+----------+-----------------+
+| EMPID | FIRSTNAME | LASTNAME      | AGE  | DOJ        | ADDRESS  | DEPT            |
++-------+-----------+---------------+------+------------+----------+-----------------+
+| E0001 | HARIKA    | PRIYADARSHINI |   21 | 2004-09-09 | VIZAG    | PYTHON          |
+| E0002 | HARI      | KIRAN         |   23 | 2014-09-09 | VIZAG    | SALES           |
+| E0003 | SAI       | KIRAN         |   23 | 2022-10-10 | HYD      | HR              |
+| E0004 | PAVAN     | KUMAR         |   24 | 2004-11-15 | CHENNAI  | HR EXECUTIVE    |
+| E0005 | SAI       | TEJA          |   24 | 2024-11-26 | BENGLURU | PRODUCT MANAGER |
+| E0006 | RAGHAVA   | RAO           |   27 | 2016-11-11 | VIZAG    | PHARMA          |
+| E0007 | SAI       | VARDHAN       |   25 | 2016-12-23 | HYD      | PYTHON          |
+| E008  | ARJUN     | NULL          | NULL | 2023-06-15 | NULL     | MARKETING       |
++-------+-----------+---------------+------+------------+----------+-----------------+
+8 rows in set (0.00 sec)
+
+mysql> INSERT INTO EMPLOYEES SET
+    -> EMPID='E0009',
+    -> FIRSTNAME='RAJA',
+    -> LASTNAME='SEKHAR',
+    -> AGE=30,
+    -> DOJ='2021-06-25',
+    -> ADDRESS='DELHI',
+    -> DEPT='MANAGER';
+Query OK, 1 row affected (0.01 sec)
+
+mysql> SELECT*FROM EMPLOYEES;
++-------+-----------+---------------+------+------------+----------+-----------------+
+| EMPID | FIRSTNAME | LASTNAME      | AGE  | DOJ        | ADDRESS  | DEPT            |
++-------+-----------+---------------+------+------------+----------+-----------------+
+| E0001 | HARIKA    | PRIYADARSHINI |   21 | 2004-09-09 | VIZAG    | PYTHON          |
+| E0002 | HARI      | KIRAN         |   23 | 2014-09-09 | VIZAG    | SALES           |
+| E0003 | SAI       | KIRAN         |   23 | 2022-10-10 | HYD      | HR              |
+| E0004 | PAVAN     | KUMAR         |   24 | 2004-11-15 | CHENNAI  | HR EXECUTIVE    |
+| E0005 | SAI       | TEJA          |   24 | 2024-11-26 | BENGLURU | PRODUCT MANAGER |
+| E0006 | RAGHAVA   | RAO           |   27 | 2016-11-11 | VIZAG    | PHARMA          |
+| E0007 | SAI       | VARDHAN       |   25 | 2016-12-23 | HYD      | PYTHON          |
+| E008  | ARJUN     | NULL          | NULL | 2023-06-15 | NULL     | MARKETING       |
+| E0009 | RAJA      | SEKHAR        |   30 | 2021-06-25 | DELHI    | MANAGER         |
++-------+-----------+---------------+------+------------+----------+-----------------+
+9 rows in set (0.00 sec)
+
+
+mysql> -- BY USING SET OPERATION WE CAN TAKE ONLY ONE RECORD AT A TIME
+mysql> UPDATE EMPLOYEES SET LASTNAME='BABU' , EMPID = 'E0005';
+Query OK, 9 rows affected (0.01 sec)
+Rows matched: 9  Changed: 9  Warnings: 0
+
+mysql> UPDATE EMPLOYEES SET LASTNAME='BABU' WHERE EMPID = 'E0005';
+Query OK, 0 rows affected (0.00 sec)
+Rows matched: 9  Changed: 0  Warnings: 0
+
+mysql> SELECT*FROM EMPLOYEES;
++-------+-----------+----------+------+------------+----------+-----------------+
+| EMPID | FIRSTNAME | LASTNAME | AGE  | DOJ        | ADDRESS  | DEPT            |
++-------+-----------+----------+------+------------+----------+-----------------+
+| E0001 | HARIKA    | PRIYADARSHINI     |   21 | 2004-09-09 | VIZAG    | PYTHON          |
+| E0002 | HARI      | KIRAN     |   23 | 2014-09-09 | VIZAG    | SALES           |
+| E0003 | SAI       | KIRAN    |   23 | 2022-10-10 | HYD      | HR              |
+| E0004 | PAVAN     | KUMAR     |   24 | 2004-11-15 | CHENNAI  | HR EXECUTIVE    |
+| E0005 | SAI       | BABU     |   24 | 2024-11-26 | BENGLURU | PRODUCT MANAGER |
+| E0006 | RAGHAVA   | RAO     |   27 | 2016-11-11 | VIZAG    | PHARMA          |
+| E0007 | SAI       | VARDHAN    |   25 | 2016-12-23 | HYD      | PYTHON          |
+| E0008 | ARJUN  | NULL | 2023-06-15 | NULL     | MARKETING       |
+| E0009 | RAJA      | SEKHAR  |   30 | 2021-06-25 | DELHI    | MANAGER         |
++-------+-----------+----------+------+------------+----------+-----------------+
+9 rows in set (0.00 sec)
+
+mysql> UPDATE EMPLOYEE SET LASTNAME='VARDHAN',FIRSTNAME='SAI',AGE=25 WHERE DOJ='2016-12-23';
+Query OK, 2 rows affected (0.06 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+mysql> SELECT*FROM EMPLOYEE WHERE DOJ='2026-06-20';
++-------+-----------+----------+------+------------+---------+------+
+| Empid | FIRSTNAME | LASTNAME | age  | doj        | address | dept |
++-------+-----------+----------+------+------------+---------+------+
+| E005  | SAI  | VARDHAN    |   25 |2016-12-23  | HYD | PYTHON|
+| E005  | SAI  | VARDHAN    |   25 | 2016-12-23 | HYD | PYTHON |
++-------+-----------+----------+------+------------+---------+------+
+2 rows in set (0.00 sec)
+
+mysql> SELECT*FROM EMPLOYEES;
++-------+-----------+----------+------+------------+----------+-----------------+
+| EMPID | FIRSTNAME | LASTNAME | AGE  | DOJ        | ADDRESS  | DEPT            |
++-------+-----------+----------+------+------------+----------+-----------------+
+| E0001 | HARIKA    | PRIYADARSHINI     |   21 | 2004-09-09 | VIZAG    | PYTHON          |
+| E0002 | HARI      | KIRAN     |   23 | 2014-09-09 | VIZAG    | SALES           |
+| E0003 | SAI       | KIRAN    |   23 | 2022-10-10 | HYD      | HR              |
+| E0004 | PAVAN     | KUMAR     |   24 | 2004-11-15 | CHENNAI  | HR EXECUTIVE    |
+| E0005 | SAI       | BABU     |   24 | 2024-11-26 | BENGLURU | PRODUCT MANAGER |
+| E0006 | RAGHAVA   | RAO     |   27 | 2016-11-11 | VIZAG    | PHARMA          |
+| E0007 | SAI       | VARDHAN    |   25 | 2016-12-23 | HYD      | PYTHON          |
+   E0007 | SAI       | VARDHAN    |   25 | 2016-12-23 | HYD      | PYTHON          |
+| E0008 | ARJUN  | NULL | 2023-06-15 | NULL     | MARKETING       |
+| E0009 | RAJA      | SEKHAR  |   30 | 2021-06-25 | DELHI    | MANAGER         |
++-------+-----------+----------+------+------------+----------+-----------------+
+9 rows in set (0.00 sec)
+
+
+mysql> UPDATE EMPLOYEE SET DEPT='PYTHON' WHERE DEPT='DA';
+Query OK, 0 rows affected (0.00 sec)
+Rows matched: 0  Changed: 0  Warnings: 0
+
+mysql> UPDATE EMPLOYEE SET DEPT='PHARMA' WHERE DEPT='DEVOPS';
+Query OK, 0 rows affected (0.00 sec)
+Rows matched: 0  Changed: 0  Warnings: 0
+
+mysql> SELECT*FROM EMPLOYEES;
++-------+-----------+----------+------+------------+----------+-----------------+
+| EMPID | FIRSTNAME | LASTNAME | AGE  | DOJ        | ADDRESS  | DEPT            |
++-------+-----------+----------+------+------------+----------+-----------------+
+| E0001 | HARIKA    | PRIYADARSHINI     |   21 | 2004-09-09 | VIZAG    | DA        |
+| E0002 | HARI      | KIRAN     |   23 | 2014-09-09 | VIZAG    | SALES           |
+| E0003 | SAI       | KIRAN    |   23 | 2022-10-10 | HYD      | HR              |
+| E0004 | PAVAN     | KUMAR     |   24 | 2004-11-15 | CHENNAI  | HR EXECUTIVE    |
+| E0005 | SAI       | BABU     |   24 | 2024-11-26 | BENGLURU | PRODUCT MANAGER |
+| E0006 | RAGHAVA   | RAO     |   27 | 2016-11-11 | VIZAG    | DEVOPS          |
+| E0007 | SAI       | VARDHAN    |   25 | 2016-12-23 | HYD      | DA      |
+   E0007 | SAI       | VARDHAN    |   25 | 2016-12-23 | HYD      | DA     |
+| E0008 | ARJUN  | NULL | 2023-06-15 | NULL     | MARKETING       |
+| E0009 | RAJA      | SEKHAR  |   30 | 2021-06-25 | DELHI    | MANAGER         |
++-------+-----------+----------+------+------------+----------+-----------------+
+9 rows in set (0.00 sec)
+
+mysql> DELETE FROM EMPLOYEE WHERE LASTNAME='PRIYADARSHINI';
+Query OK, 2 rows affected (0.01 sec)
+
+mysql> SELECT*FROM EMPLOYEES;
++-------+-----------+----------+------+------------+----------+-----------------+
+| EMPID | FIRSTNAME | LASTNAME | AGE  | DOJ        | ADDRESS  | DEPT            |
++-------+-----------+----------+------+------------+----------+-----------------+
+| E0002 | HARI      | KIRAN     |   23 | 2014-09-09 | VIZAG    | SALES           |
+| E0003 | SAI       | KIRAN    |   23 | 2022-10-10 | HYD      | HR              |
+| E0004 | PAVAN     | KUMAR     |   24 | 2004-11-15 | CHENNAI  | HR EXECUTIVE    |
+| E0005 | SAI       | BABU     |   24 | 2024-11-26 | BENGLURU | PRODUCT MANAGER |
+| E0006 | RAGHAVA   | RAO     |   27 | 2016-11-11 | VIZAG    | DEVOPS          |
+| E0007 | SAI       | VARDHAN    |   25 | 2016-12-23 | HYD      | DA      |
+   E0007 | SAI       | VARDHAN    |   25 | 2016-12-23 | HYD      | DA     |
+| E0008 | ARJUN  | NULL | 2023-06-15 | NULL     | MARKETING       |
+| E0009 | RAJA      | SEKHAR  |   30 | 2021-06-25 | DELHI    | MANAGER         |
++-------+-----------+----------+------+------------+----------+-----------------+
+
+8 rows in set (0.00 sec)
+
+mysql> TRUNCATE TABLE EMPLOYEE;
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> SELECT*FROM EMPLOYEE;
+Empty set (0.00 sec)
+
+mysql> DROP TABLE EMPLOYEE;
+Query OK, 0 rows affected (0.06 sec)
+
+
+
