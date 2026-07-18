@@ -1,0 +1,242 @@
+mysql> use da4;
+Database changed
+mysql> CREATE TABLE EMPLOYEES(
+    -> EMPID INT AUTO_INCREMENT PRIMARY KEY,
+    -> NAME VARCHAR(20),
+    -> DEPARTMENT VARCHAR(30)
+    -> );
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> DESC EMPLOYEES;
++-----------+--------------+------+-----+---------+-------+
+| Field     | Type         | Null | Key | Default | Extra |
++-----------+--------------+------+-----+---------+-------+
+| EMPID     | char(5)      | YES  |     | NULL    |       |
+| FIRSTNAME | varchar(30)  | YES  |     | NULL    |       |
+| LASTNAME  | varchar(100) | YES  |     | NULL    |       |
+| AGE       | int          | YES  |     | NULL    |       |
+| DOJ       | date         | YES  |     | NULL    |       |
+| ADDRESS   | tinytext     | YES  |     | NULL    |       |
+| DEPT      | varchar(50)  | YES  |     | NULL    |       |
++-----------+--------------+------+-----+---------+-------+
+7 rows in set (0.01 sec)
+mysql> CREATE TABLE STAFF(
+    -> EMPID INT AUTO_INCREMENT PRIMARY KEY,
+    -> NAME VARCHAR(20),
+    -> DEPARTMENT VARCHAR(30)
+    -> );
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> DESC STAFF;
++------------+-------------+------+-----+---------+----------------+
+| Field      | Type        | Null | Key | Default | Extra          |
++------------+-------------+------+-----+---------+----------------+
+| EMPID      | int         | NO   | PRI | NULL    | auto_increment |
+| NAME       | varchar(20) | YES  |     | NULL    |                |
+| DEPARTMENT | varchar(30) | YES  |     | NULL    |                |
++------------+-------------+------+-----+---------+----------------+
+3 rows in set (0.01 sec)
+mysql> INSERT INTO STAFF(NAME,DEPARTMENT)VALUES
+    -> ('HARIKA','IT'),
+    -> ('SAI','HR'),
+    -> ('KIRAN','FINANCE');
+Query OK, 3 rows affected (0.01 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> CREATE TABLE BACKUPEMPLOYEES AS SELECT*FROM STAFF;
+Query OK, 3 rows affected (0.03 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> DESC BACKUPEMPLOYEES;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| EMPID      | int         | NO   |     | 0       |       |
+| NAME       | varchar(20) | YES  |     | NULL    |       |
+| DEPARTMENT | varchar(30) | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+3 rows in set (0.01 sec)
+
+mysql> CREATE TABLE PRODUCTS(
+    -> PRODUCTID INT AUTO_INCREMENT PRIMARY KEY,
+    -> PRODUCTNAME VARCHAR(20),
+    -> PRICE DECIMAL(10,2),
+    -> QUANTITY INT,
+    -> TOTALAMOUNT DECIMAL(10,2) GENERATED ALWAYS AS(PRICE*QUANTITY)STORED
+    -> );
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> INSERT INTO PRODUCTS (PRODUCTNAME,PRICE,QUANTITY)VALUES
+    -> ('AIRFRYER',5500.5,5),
+    -> ('IPAD',60000.25,2),
+    -> ('BLUETOOTH',2500.15,4)
+    -> ;
+Query OK, 3 rows affected (0.01 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> SELECT*FROM PRODUCTS;
++-----------+-------------+----------+----------+-------------+
+| PRODUCTID | PRODUCTNAME | PRICE    | QUANTITY | TOTALAMOUNT |
++-----------+-------------+----------+----------+-------------+
+|         1 | AIRFRYER    |  5500.50 |        5 |    27502.50 |
+|         2 | IPAD        | 60000.25 |        2 |   120000.50 |
+|         3 | BLUETOOTH   |  2500.15 |        4 |    10000.60 |
++-----------+-------------+----------+----------+-------------+
+3 rows in set (0.00 sec)
+
+mysql> UPDATE PRODUCTS SET PRICE=10000.4 WHERE PRODUCTID=1;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> SELECT*FROM PRODUCTS;
++-----------+-------------+----------+----------+-------------+
+| PRODUCTID | PRODUCTNAME | PRICE    | QUANTITY | TOTALAMOUNT |
++-----------+-------------+----------+----------+-------------+
+|         1 | AIRFRYER    | 10000.40 |        5 |    50002.00 |
+|         2 | IPAD        | 60000.25 |        2 |   120000.50 |
+|         3 | BLUETOOTH   |  2500.15 |        4 |    10000.60 |
++-----------+-------------+----------+----------+-------------+
+3 rows in set (0.00 sec)
+
+mysql> DELETE FROM PRODUCTS WHERE PRODUCTID=2;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> SELECT*FROM PRODUCTS;
++-----------+-------------+----------+----------+-------------+
+| PRODUCTID | PRODUCTNAME | PRICE    | QUANTITY | TOTALAMOUNT |
++-----------+-------------+----------+----------+-------------+
+|         1 | AIRFRYER    | 10000.40 |        5 |    50002.00 |
+|         3 | BLUETOOTH   |  2500.15 |        4 |    10000.60 |
++-----------+-------------+----------+----------+-------------+
+2 rows in set (0.00 sec)
+
+mysql> INSERT INTO PRODUCTS (PRODUCTNAME,PRICE,QUANTITY)VALUES
+    -> ('IPAD',60000.25,2);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> SELECT*FROM PRODUCTS;
++-----------+-------------+----------+----------+-------------+
+| PRODUCTID | PRODUCTNAME | PRICE    | QUANTITY | TOTALAMOUNT |
++-----------+-------------+----------+----------+-------------+
+|         1 | AIRFRYER    | 10000.40 |        5 |    50002.00 |
+|         3 | BLUETOOTH   |  2500.15 |        4 |    10000.60 |
+|         4 | IPAD        | 60000.25 |        2 |   120000.50 |
++-----------+-------------+----------+----------+-------------+
+3 rows in set (0.00 sec)
+
+mysql> CREATE TABLE STUDENTS(
+    -> STUDENTID INT AUTO_INCREMENT PRIMARY KEY,
+    -> SNAME VARCHAR(20),
+    -> SMOBILE VARCHAR(10),
+    -> SMARKS INT(3)
+    -> );
+Query OK, 0 rows affected, 1 warning (0.04 sec)
+
+mysql> INSERT INTO STUDENTS(SNAME,SMOBILE,SMARKS)VALUES
+    -> ('PRIYA','9854617125',89),
+    -> ('GEETHA','7854156425',75),
+    -> ('BHANU','3698546975',69),
+    -> ('JAYRAJ','125639845',88);
+Query OK, 4 rows affected (0.01 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> SELECT*FROM STUDENTS;
++-----------+--------+------------+--------+
+| STUDENTID | SNAME  | SMOBILE    | SMARKS |
++-----------+--------+------------+--------+
+|         1 | PRIYA  | 9854617125 |     89 |
+|         2 | GEETHA | 7854156425 |     75 |
+|         3 | BHANU  | 3698546975 |     69 |
+|         4 | JAYRAJ | 125639845  |     88 |
++-----------+--------+------------+--------+
+4 rows in set (0.00 sec)
+
+mysql> CREATE USER HARRY IDENTIFIED BY 'HARRY123';
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> CREATE USER KIRAN IDENTIFIED BY 'KIRAN123';
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> -- CREATED USERS WITH PASSWORDS TO ACCESS SYNTAX CREATE USER USERNAME IDENTIFIED BY PASSWORD 
+mysql> GRANT SELECT,INSERT,UPDATE ON STUDENTS TO HARRY;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> GRANT SELECT,DELETE ON STUDENTS TO KIRAN;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> REVOKE INSERT,UPDATE ON STUDENTS FROM HARRY;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> REVOKE DELETE ON STUDENTS FROM KIRAN; 
+Query OK, 0 rows affected (0.01 sec)
+
+C:\Program Files\MySQL\MySQL Server 8.0\bin>MySQL -u KIRAN -p
+Enter password: ********
+mysql> USE DA4;
+Database changed
+mysql> SELECT*FROM STUDENTS;
++-----------+--------+------------+--------+
+| STUDENTID | SNAME  | SMOBILE    | SMARKS |
++-----------+--------+------------+--------+
+|         1 | PRIYA  | 9854617125 |     89 |
+|         2 | GEETHA | 7854156425 |     75 |
+|         3 | BHANU  | 3698546975 |     69 |
+|         4 | JAYRAJ | 125639845  |     88 |
++-----------+--------+------------+--------+
+mysql> INSERT INTO STUDENTS VALUES(5,'RAJU','759864258',56);
+ERROR 1142 (42000): INSERT command denied to user 'KIRAN'@'localhost' for table 'students'
+mysql> SELECT*FROM STUDENTS;
++-----------+--------+------------+--------+
+| STUDENTID | SNAME  | SMOBILE    | SMARKS |
++-----------+--------+------------+--------+
+|         1 | PRIYA  | 9854617125 |     89 |
+|         2 | GEETHA | 7854156425 |     75 |
+|         3 | BHANU  | 3698546975 |     69 |
+|         4 | JAYRAJ | 125639845  |     88 |
+|         5 | RAJU   | 9865745869 |     59 |
++-----------+--------+------------+--------+
+5 rows in set (0.00 sec)
+
+--To the kiran i only gave select option so only select is working, in this when iam tring to insert..it is showing denied to user error for kiran..
+
+C:\Program Files\MySQL\MySQL Server 8.0\bin>MySQL -u HARRY -p
+Enter password: ********
+
+mysql> USE DA4;
+Database changed
+mysql> SELECT*FROM STUDENTS;
++-----------+--------+------------+--------+
+| STUDENTID | SNAME  | SMOBILE    | SMARKS |
++-----------+--------+------------+--------+
+|         1 | PRIYA  | 9854617125 |     89 |
+|         2 | GEETHA | 7854156425 |     75 |
+|         3 | BHANU  | 3698546975 |     69 |
+|         4 | JAYRAJ | 125639845  |     88 |
++-----------+--------+------------+--------+
+4 rows in set (0.00 sec)
+
+mysql> INSERT INTO STUDENTS VALUES(5,'RAJU','9865745869',59);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> SELECT*FROM STUDENTS;
++-----------+--------+------------+--------+
+| STUDENTID | SNAME  | SMOBILE    | SMARKS |
++-----------+--------+------------+--------+
+|         1 | PRIYA  | 9854617125 |     89 |
+|         2 | GEETHA | 7854156425 |     75 |
+|         3 | BHANU  | 3698546975 |     69 |
+|         4 | JAYRAJ | 125639845  |     88 |
+|         5 | RAJU   | 9865745869 |     59 |
++-----------+--------+------------+--------+
+
+
+
+
+
+
+
+
+
+
+
+
