@@ -45,20 +45,21 @@ This repository contains my daily MySQL notes and practice completed during my C
 - INSERT Statement
 - UPDATE Statement
 - DELETE Statement
+- TRUNCATE Statement
+- DROP Statement
 
-### 💻 Hands-on Practice
-- Inserted single and multiple records into the `EMPLOYEES` table.
-- Inserted data using:
-  - Column names
-  - Complete row values
-  - Partial column values
-  - `INSERT ... SET` syntax
-- Updated employee details using the `UPDATE` statement.
-- Updated multiple columns with the `WHERE` clause.
-- Practiced modifying employee departments and names.
-- Deleted specific records using the `DELETE` statement.
-- Removed all records using `TRUNCATE TABLE`.
-- Permanently deleted a table using `DROP TABLE`.
+- ### ✅ Day 6
+**Topics Covered:**
+- AUTO_INCREMENT
+- CREATE TABLE AS SELECT (CTAS)
+- Backup Table Creation
+- Generated (Computed) Columns
+- INSERT, UPDATE & DELETE Operations
+- User Management
+- CREATE USER
+- GRANT & REVOKE Privileges
+- Access Permission Testing
+
 
 ---
 
