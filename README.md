@@ -60,6 +60,38 @@ This repository contains my daily MySQL notes and practice completed during my C
 - GRANT & REVOKE Privileges
 - Access Permission Testing
 
+- ## 📅 Day 7 – TCL, ACID Properties & Locking
+
+📚 Topics Covered:
+- Transaction Control Language (TCL)
+- Transaction Management
+- Local Transactions
+- Global Transactions
+- ACID Properties
+  - Atomicity
+  - Consistency
+  - Isolation
+  - Durability
+- COMMIT
+- ROLLBACK
+- SAVEPOINT
+- Locking in MySQL
+  - Shared Lock
+  - Exclusive Lock
+  - Intent Lock
+
+💻 Practical:
+- Created `EMPLOYEE` table.
+- Performed transactions using `START TRANSACTION`.
+- Used `COMMIT` to permanently save changes.
+- Used `ROLLBACK` to undo transactions.
+- Created and restored `SAVEPOINT`.
+- Created `LOCK_DEMO` database.
+- Practiced `LOCK TABLES` with `READ` and `WRITE` locks.
+- Used `UNLOCK TABLES` to release locks.
+- Implemented row-level locking using `SELECT ... FOR UPDATE`.
+- Explored real-time examples of ACID properties and database locking.
+
 
 ---
 
