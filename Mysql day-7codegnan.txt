@@ -1,0 +1,465 @@
+4.TCL : (Transaction control language) :
+----------------------------------------------------
+The process of combining all related operations into a single unit and executing them according to the rule "either all operations should be succeed or none should be succeed"  is called Transaction Management.
+
+A transaction is considered a single unit of work and follows the priniciple
+"Either all or none "
+
+example :  Funds transfer.
+
+consider a money transfer process between two accounts.
+
+1.Debit amount from the sender's account
+2.credit amount into the receiver's account 
+Both operations should be executed as a single transaction.
+
+If the amount is debited from the sender's account successfully. but crediting the recover's amount fails. It may lead to the data inconsistency problems.
+
+There are two types of transactions such as :
+
+1. Local Transactions
+------------------------------
+>>In Local Transactions, all operations of a transactions are executed in the same database.
+
+Example :
+-------------
+Funds transform from one account to another account where both accounts belongs to the same bank.
+
+2. Global Transactions :
+---------------------------------
+>In global transactions, operations of a transaction are executed on different database.
+
+Example :
+--------------
+Funds transform from one account to another account where both accounts belongs to the different bank.
+
+**ACID PROPERTIES :
+---------------------------------
+ACID is a set of four properties that ensure database transactions are safe, reliable, and accurate.
+
+ACID =
+
+A → Atomicity
+C → Consistency
+I → Isolation
+D → Durability
+
+1. Atomicity: All or Nothing
+--> Atomicity ensures that a transaction is completed entirely or not at all. If any operation fails, the entire transaction is rolled back.
+2. Consistency: The Database remains in a valid state
+--> Consistency ensures that the database remains in a valid state before and after a transaction.
+3. Isolation: Transaction do not interface with each other
+--> Isolation ensures that multiple transactions running at the same time do not interfere with each other.
+4. Durability: Committed changes are permanent
+--> Once a transaction is committed, the changes are permanent, even if the system crashes.
+
+
+Transaction: A group of SQL statements executed as a single unit.
+
+1) Atomicity (All or Nothing) :
+
+Definition :
+------------- 
+Atomicity means either all operations in a transaction are completed successfully or none of them are completed.
+
+Key Points :
+--------------
+All operations execute together.
+If any operation fails, the entire transaction is cancelled.
+Uses ROLLBACK when an error occurs.
+
+Real-Time Example:
+-----------------------
+Bank Money Transfer
+Harika transfers ₹1000 to Priya.
+
+  Steps:
+-----------
+₹1000 deducted from Harika's account.
+₹1000 added to Priya's account.
+
+If the server crashes after Step 1:
+
+Money deduction is cancelled.
+₹1000 is returned to Harika's account.
+
+Result: Either both operations happen or neither happens
+
+2)Consistency (Data Always Remains Correct) :
+-------------------------------------------------------------
+Definition:
+-------------
+Consistency ensures that the database always remains in a valid and correct state before and after a transaction.
+
+Key Points
+---------------
+Database rules are never violated.
+Invalid data is rejected.
+Data remains accurate.
+
+Real-Time Example :
+---------------------------------
+Suppose a bank has two accounts:
+
+Harika: ₹10,000
+Priya: ₹5,000
+
+Harika transfers ₹2,000 to Priya.
+
+Before Transaction:
+
+Harika = ₹10,000
+Priya = ₹5,000
+Total Money = ₹15,000
+
+After Transaction:
+
+Harika = ₹8,000
+Priya = ₹7,000
+Total Money = ₹15,000
+
+The total amount of money in the database remains the same (₹15,000). Only the money is transferred from one account to another.
+
+This means the database remains consistent because no money is lost or created.
+
+3)Isolation (Transactions Work Independently) :
+--------------------------------------------------------------------
+Definition:
+---------------
+Isolation ensures that multiple transactions can run at the same time without affecting each other.
+
+Key Points :
+-----------------
+Transactions do not interfere with each other.
+Prevents duplicate or incorrect data.
+Users only see committed data.
+
+Real-Time Example:
+--------------------------
+Movie Ticket Booking
+
+Only 1 seat is available.
+
+Person A books the seat.
+
+At the same time,
+Person B also tries to book it.
+
+With Isolation:
+
+Person A gets the ticket.
+Person B receives "Seat Already Booked."
+
+The same seat cannot be booked twice.
+
+4)Durability (Data is Permanently Saved) :
+------------------------------------------------------------
+Definition :
+---------------
+Durability ensures that once a transaction is committed, the data is permanently stored, even if the system crashes.
+
+Key Points :
+-----------------
+Committed data is never lost.
+Survives power failure and server crash.
+Uses COMMIT.
+
+Real-Time Example
+--------------------------- 
+You transfer ₹10,000 using online banking.
+
+Transaction Successful
+
+Immediately after that, the server crashes.
+
+When the system restarts:
+
+The transaction is still saved.
+Your money is not lost.
+
+| Property        | Meaning                                | Real-Time Example              |
+| --------------- | -------------------------------------- | ------------------------------ |
+| **Atomicity**   | All operations succeed or none succeed | Bank Money Transfer            |
+| **Consistency** | Database always remains correct        | Total balance remains the same |
+| **Isolation**   | Transactions don't affect each other   | Movie Ticket Booking           |
+| **Durability**  | Committed data is permanently stored   | Online Banking Transaction     |
+
+
+**WHAT IS LOCKIING?
+Locking is a mechanisam used by the database to control concurrent access data.
+
+It ensures that multiple users access the same data simultaneously the database maintains consistency, integrity, and prevent conflicts.
+
+1.SHARED LOCK
+-------------------------
+>> A shared lock allows a transaction to read data.
+Multiple transactions can hold a shared lock on the same row.
+No transaction can modify the row until all shared locks are relaesed.
+
+CHARACTERSTICS:
+----------------------------
+Read only 
+multiple users can read simultaneously
+Blocks updates and deletes
+
+
+2.EXCLUSIVE LOCK
+-----------------------------
+>> An exclusive lock allows a transaction to modify data.
+While an Exclusive Lock exists:
+No other transaction can read using a locking read or modify that row.
+Only the transaction holding the lock can update/delete the data
+
+CHARACTERSTICS
+---------------------------
+Used for INSERT, UPDATE, DELETE
+Only one exclusive lock at atime
+Block both reads (locking reads) and writes
+
+3.INTENT LOCK
+-------------------------
+>>An Intent lock is a table-level lock that indicates a transaction intends to place row-level locks.
+It helps MySQL quickly determine whether a table-level lock conflicts with existing row locks.
+User do not usually create Intent Locks manually. InnoDB manages them automatically.
+
+REAL-LIFE Example:
+-----------------------------
+Imagine a library:
+Shared Locks - Many Students can read the same book at the same time .
+Exclusive Lock - One Student borrows the book, so nobody else can read or borrow it until it is returned.
+Intent Lock - The Librarian marks that someone is about to read or borrow books from a shelf, helping coordinate access without checking every book individually. 
+
+
+mysql> use da4;
+Database changed
+mysql> SHOW TABLES;
++-----------------+
+| Tables_in_da4   |
++-----------------+
+| backupemployees |
+| company_staff   |
+| employees       |
+| products        |
+| staff           |
+| students        |
++-----------------+
+6 rows in set (0.02 sec)
+
+mysql> CREATE TABLE EMPLOYEE(
+    -> EMP_ID INT PRIMARY KEY,
+    -> EMP_NAME VARCHAR(30),
+    -> SALARY DECIMAL(10,2)
+    -> );
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> START TRANSACTION;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> INSERT INTO EMPLOYEE VALUES(111,'HARIKA',60000);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO EMPLOYEE VALUES(222,'PRIYA',65000);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> COMMIT;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> SELECT*FROM EMPLOYEE;
++--------+----------+----------+
+| EMP_ID | EMP_NAME | SALARY   |
++--------+----------+----------+
+|    111 | HARIKA   | 60000.00 |
+|    222 | PRIYA    | 65000.00 |
++--------+----------+----------+
+2 rows in set (0.00 sec)
+
+mysql> START TRANSACTION;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> UPDATE EMPLOYEE SET SALARY=75000 WHERE EMP_ID=111;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> SELECT*FROM EMPLOYEE;
++--------+----------+----------+
+| EMP_ID | EMP_NAME | SALARY   |
++--------+----------+----------+
+|    111 | HARIKA   | 75000.00 |
+|    222 | PRIYA    | 65000.00 |
++--------+----------+----------+
+2 rows in set (0.00 sec)
+
+mysql> ROLLBACK;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> SELECT*FROM EMPLOYEE;
++--------+----------+----------+
+| EMP_ID | EMP_NAME | SALARY   |
++--------+----------+----------+
+|    111 | HARIKA   | 60000.00 |
+|    222 | PRIYA    | 65000.00 |
++--------+----------+----------+
+2 rows in set (0.00 sec)
+
+mysql> START TRANSACTION;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> SELECT*FROM EMPLOYEE;
++--------+----------+----------+
+| EMP_ID | EMP_NAME | SALARY   |
++--------+----------+----------+
+|    111 | HARIKA   | 60000.00 |
+|    222 | PRIYA    | 65000.00 |
++--------+----------+----------+
+2 rows in set (0.00 sec)
+
+mysql> INSERT INTO EMPLOYEE VALUES(333,'DHARSHINI',55000);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> SELECT*FROM EMPLOYEE;
++--------+-----------+----------+
+| EMP_ID | EMP_NAME  | SALARY   |
++--------+-----------+----------+
+|    111 | HARIKA    | 60000.00 |
+|    222 | PRIYA     | 65000.00 |
+|    333 | DHARSHINI | 55000.00 |
++--------+-----------+----------+
+3 rows in set (0.00 sec)
+
+mysql> UPDATE EMPLOYEE SET SALARY=SALARY+5000 WHERE SALARY<=60000;
+Query OK, 2 rows affected (0.01 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+mysql> SELECT*FROM EMPLOYEE;
++--------+-----------+----------+
+| EMP_ID | EMP_NAME  | SALARY   |
++--------+-----------+----------+
+|    111 | HARIKA    | 65000.00 |
+|    222 | PRIYA     | 65000.00 |
+|    333 | DHARSHINI | 60000.00 |
++--------+-----------+----------+
+3 rows in set (0.00 sec)
+mysql> SELECT*FROM EMPLOYEE;
++--------+-----------+----------+
+| EMP_ID | EMP_NAME  | SALARY   |
++--------+-----------+----------+
+|    111 | HARIKA    | 65000.00 |
+|    333 | DHARSHINI | 60000.00 |
++--------+-----------+----------+
+2 rows in set (0.00 sec)
+
+mysql> SAVEPOINT sp1;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> DELETE FROM EMPLOYEE WHERE EMP_ID = 111;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> SELECT* FROM EMPLOYEE;
++-------+---------+----------+
+| EMP_ID | EMP_NAME | SALARY   |
++-------+---------+----------+
+|   222 | PRIYA   | 65000.00 |
+|   333 | DHARSHINI    | 60000.00 |
++-------+---------+----------+
+2 rows in set (0.00 sec)
+
+mysql> ROLLBACK TO  sp1;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> SELECT* FROM EMPLOYEE;
++-------+---------+----------+
+| EMP_ID | EMP_NAME | SALARY   |
++-------+---------+----------+
+|   111 | HARIKA   | 65000.00 |
+|   222 | PRIYA   | 65000.00 |
+|   333 | DHARSHINI |  60000.00 |
++-------+---------+----------+
+3 rows in set (0.00 sec)
+
+mysql> DELETE FROM EMPLOYEE WHERE = 222;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> SELECT* FROM EMPLOYEE;
++-------+---------+----------+
+| EMP_ID | EMP_NAME | SALARY  |
++-------+---------+----------+
+|   111 | HARIKA  | 65000.00 |
+|   333 | DHARSHINI   |  60000.00 |
++-------+---------+----------+
+2 rows in set (0.00 sec)
+
+mysql> commit;
+Query OK, 0 rows affected (0.02 sec)
+mysql> SHOW DATABASES;
++--------------------+
+| Database           |
++--------------------+
+| da4                |
+| information_schema |
+| mysql              |
+| performance_schema |
+| pfs4               |
+| sys                |
++--------------------+
+6 rows in set (0.01 sec)
+
+mysql> CREATE DATABASE LOCK_DEMO;
+Query OK, 1 row affected (0.02 sec)
+
+mysql> USE LOCK_DEMO;
+Database changed
+mysql> CREATE TABLE employee (
+    -> emp_id INT PRIMARY KEY,
+    -> emp_name VARCHAR(50),
+    -> department VARCHAR(50),
+    -> salary DECIMAL(10,2)
+    -> );
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> INSERT INTO employee VALUES
+    -> (101,'HARRY','IT',50000),
+    -> (102,'JHONNY','HR',45000),
+    -> (103,'ROCKY','Testing',55000);
+Query OK, 3 rows affected (0.02 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> LOCK TABLES EMPLOYEE WRITE;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> UNLOCK TABLES;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> LOCK TABLES EMPLOYEE READ;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> UNLOCK TABLES;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> SELECT*FROM EMPLOYEE;
++--------+----------+------------+----------+
+| emp_id | emp_name | department | salary   |
++--------+----------+------------+----------+
+|    101 | HARRY    | IT         | 50000.00 |
+|    102 | JHONNY   | HR         | 45000.00 |
+|    103 | ROCKY    | Testing    | 55000.00 |
++--------+----------+------------+----------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT*FROM EMPLOYEE WHERE EMP
+    -> _ID=101 FOR UPDATE;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '_ID=101 FOR UPDATE' at line 2
+mysql> START TRANSACTION;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> SELECT*FROM EMPLOYEE WHERE EMP_ID=101 FOR UPDATE;
++--------+----------+------------+----------+
+| emp_id | emp_name | department | salary   |
++--------+----------+------------+----------+
+|    101 | HARRY    | IT         | 50000.00 |
++--------+----------+------------+----------+
+1 row in set (0.00 sec)
+
+mysql> COMMIT;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> Terminal close -- exit!

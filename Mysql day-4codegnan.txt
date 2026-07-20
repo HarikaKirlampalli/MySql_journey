@@ -1,3 +1,5 @@
+HERE, I LEARNED (CREATE , DROP , RENAME ,ALTER - TO ADD , TO MODIFY, TO CHANGE, TO DROP COLUMN)
+
 mysql> show databases;
 +--------------------+
 | Database           |

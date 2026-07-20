@@ -154,10 +154,6 @@ mysql> SELECT*FROM EMPLOYEES;
 
 
 mysql> -- BY USING SET OPERATION WE CAN TAKE ONLY ONE RECORD AT A TIME
-mysql> UPDATE EMPLOYEES SET LASTNAME='BABU' , EMPID = 'E0005';
-Query OK, 9 rows affected (0.01 sec)
-Rows matched: 9  Changed: 9  Warnings: 0
-
 mysql> UPDATE EMPLOYEES SET LASTNAME='BABU' WHERE EMPID = 'E0005';
 Query OK, 0 rows affected (0.00 sec)
 Rows matched: 9  Changed: 0  Warnings: 0
