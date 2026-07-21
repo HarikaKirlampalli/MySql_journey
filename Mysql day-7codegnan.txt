@@ -445,9 +445,6 @@ mysql> SELECT*FROM EMPLOYEE;
 +--------+----------+------------+----------+
 3 rows in set (0.00 sec)
 
-mysql> SELECT*FROM EMPLOYEE WHERE EMP
-    -> _ID=101 FOR UPDATE;
-ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '_ID=101 FOR UPDATE' at line 2
 mysql> START TRANSACTION;
 Query OK, 0 rows affected (0.00 sec)
 
@@ -463,3 +460,11 @@ mysql> COMMIT;
 Query OK, 0 rows affected (0.00 sec)
 
 mysql> Terminal close -- exit!
+
+
+
+
+
+
+
+
