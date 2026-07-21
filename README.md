@@ -92,6 +92,24 @@ This repository contains my daily MySQL notes and practice completed during my C
 - Implemented row-level locking using `SELECT ... FOR UPDATE`.
 - Explored real-time examples of ACID properties and database locking.
 
+- ## 📅 Day 8
+📚 Topics Covered:
+- SQL Constraints
+- NOT NULL Constraint
+- UNIQUE Constraint
+- PRIMARY KEY Constraint
+- COMPOSITE KEY
+- FOREIGN KEY
+- CHECK Constraint
+- DEFAULT Constraint
+
+💻 What I Learned:
+- Applied different SQL constraints to maintain data integrity.
+- Understood the differences between NOT NULL, UNIQUE, and PRIMARY KEY.
+- Learned how COMPOSITE KEY uniquely identifies records using multiple columns.
+- Explored FOREIGN KEY relationships between parent and child tables.
+- Practiced using CHECK and DEFAULT constraints to validate and assign default values.
+
 
 ---
 
