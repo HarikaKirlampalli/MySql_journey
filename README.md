@@ -102,13 +102,28 @@ This repository contains my daily MySQL notes and practice completed during my C
 - FOREIGN KEY
 - CHECK Constraint
 - DEFAULT Constraint
-
 💻 What I Learned:
 - Applied different SQL constraints to maintain data integrity.
 - Understood the differences between NOT NULL, UNIQUE, and PRIMARY KEY.
 - Learned how COMPOSITE KEY uniquely identifies records using multiple columns.
 - Explored FOREIGN KEY relationships between parent and child tables.
 - Practiced using CHECK and DEFAULT constraints to validate and assign default values.
+
+- ## 📅 Day 9
+
+📚 Topics Covered:
+- Comparison Operators (`=`, `!=`, `>`, `<`, `>=`, `<=`)
+- Logical Operators (`AND`, `OR`, `NOT`)
+- UPDATE with Conditions
+- DELETE with Conditions
+- Filtering Records using `WHERE`
+- Practical SQL Query Practice
+💻 Practical:
+- Updated product quantity and price using arithmetic operations.
+- Performed conditional UPDATE and DELETE queries.
+- Practiced comparison operators with `StudentScores` table.
+- Applied logical operators (`AND`, `OR`, `NOT`) on `Employees` table.
+- Retrieved and modified records using multiple conditions.
 
 
 ---
