@@ -142,28 +142,12 @@ On Update set Null;
 
 **OPERATORS :
 --------------------------
-
-mysql> CREATE TABLE Products (
-    ->  id INT,
-    ->  name VARCHAR(100),
-    ->  price DECIMAL(10,2),
-    ->  qty INT
-    ->  );
-ERROR 1050 (42S01): Table 'products' already exists
-mysql> 
-mysql> 
-mysql> INSERT INTO Products VALUES
-    ->  (1, 'Pen', 10.00, 100),
-    ->  (2, 'Notebook', 25.00, 50),
-    ->  (3, 'Pencil', 5.00, 200),
-    ->  (4, 'Eraser', 3.00, 300),
-    ->  (5, 'Marker', 15.00, 80),
-    ->  (6, 'Scale', 20.00, 150),
-    ->  (7, 'Sharpener', 8.00, 120),
-    ->  (8, 'Geometry Box', 120.00, 40),
-    ->  (9, 'Sketch Pen', 60.00, 75),
-    ->  (10, 'Crayons', 90.00, 55);
-ERROR 1136 (21S01): Column count doesn't match value count at row 1
+ARTHIMATIC OPERATORS
+COMPARISION OPERATORS
+LOGICAL OPERATORS
+ 
+**Arthimatic Operators
+-----------------------------------
 mysql> CREATE TABLE Product( 
     ->  id INT,
     ->  name VARCHAR(100),
@@ -172,33 +156,6 @@ mysql> CREATE TABLE Product(
     ->  );
 Query OK, 0 rows affected (0.05 sec)
 
-mysql> INSERT INTO Products VALUES
-    ->  (1, 'Pen', 10.00, 100),
-    ->  (2, 'Notebook', 25.00, 50),
-    ->  (3, 'Pencil', 5.00, 200),
-    ->  (4, 'Eraser', 3.00, 300),
-    ->  (5, 'Marker', 15.00, 80),
-    ->  (6, 'Scale', 20.00, 150),
-    ->  (7, 'Sharpener', 8.00, 120),
-    ->  (8, 'Geometry Box', 120.00, 40),
-    ->  (9, 'Sketch Pen', 60.00, 75),
-    ->  (10, 'Crayons', 90.00, 55);
-ERROR 1136 (21S01): Column count doesn't match value count at row 1
-mysql> INSERT INTO Product VALUES
-    -> INSERT INTO Products VALUES
-    ->  (1, 'Pen', 10.00, 100),
-    ->  (2, 'Notebook', 25.00, 50),
-    ->  (3, 'Pencil', 5.00, 200),
-    ->  (4, 'Eraser', 3.00, 300),
-    ->  (5, 'Marker', 15.00, 80),
-    ->  (6, 'Scale', 20.00, 150),
-    ->  (7, 'Sharpener', 8.00, 120),
-    ->  (8, 'Geometry Box', 120.00, 40),
-    ->  (9, 'Sketch Pen', 60.00, 75),
-    ->  (10, 'Crayons', 90.00, 55);
-ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'INSERT INTO Products VALUES
- (1, 'Pen', 10.00, 100),
- (2, 'Notebook', 25.00, 50)' at line 2
 mysql> INSERT INTO Product VALUES
     -> (1, 'Pen', 10.00, 100),
     ->  (2, 'Notebook', 25.00, 50),
@@ -230,8 +187,6 @@ mysql> SELECT*FROM PRODUCT;
 +------+--------------+--------+------+
 10 rows in set (0.00 sec)
 
-mysql> select name,price,price+(price*0.12)as price_with_tax from products;
-ERROR 1054 (42S22): Unknown column 'name' in 'field list'
 mysql> select name,price,price+(price*0.12)as price_with_tax from product;
 +--------------+--------+----------------+
 | name         | price  | price_with_tax |
