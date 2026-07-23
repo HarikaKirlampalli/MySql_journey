@@ -125,6 +125,18 @@ This repository contains my daily MySQL notes and practice completed during my C
 - Applied logical operators (`AND`, `OR`, `NOT`) on `Employees` table.
 - Retrieved and modified records using multiple conditions.
 
+- ## 📅 Day 10
+📚 Topics Covered:
+- Comparison Operators (=, !=, >, <, >=, <=)
+- Logical Operators (AND, OR, NOT)
+- BETWEEN Operator
+- LIKE Operator
+- IN Operator
+- Conditional Filtering using WHERE
+- UPDATE with Conditions
+- DELETE with Conditions
+- Hands-on Practice Queries
+
 
 ---
 
