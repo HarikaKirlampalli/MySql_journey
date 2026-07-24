@@ -137,6 +137,30 @@ This repository contains my daily MySQL notes and practice completed during my C
 - DELETE with Conditions
 - Hands-on Practice Queries
 
+- 📅 Day 11 – Aggregate Functions, System Functions & SQL Clauses
+📚 Topics Covered
+Aggregate Functions
+COUNT()
+SUM()
+AVG()
+MIN()
+MAX()
+System Information Functions
+CURDATE()
+CURTIME()
+NOW()
+DATABASE()
+USER()
+VERSION()
+UTC_DATE()
+UTC_TIME()
+UTC_TIMESTAMP()
+SQL Clauses
+WHERE
+GROUP BY
+HAVING
+ORDER BY...
+
 
 ---
 
