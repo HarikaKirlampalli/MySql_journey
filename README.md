@@ -158,6 +158,18 @@ This repository contains my daily MySQL notes and practice completed during my C
 - Retrieved top records using `LIMIT`.
 - Practiced SQL Query Execution Order:
 
+- # Day 12 - MySQL Learning Journey 🚀
+## Topics Covered:
+- GROUP BY
+- HAVING
+- ORDER BY
+- Aggregate Functions
+- SET OPERATORS (UNION, UNION ALL, INTERSECT, MINUS)
+## Practice:
+- Sales Data Analysis Queries
+- Student Database Queries
+Day 12 Completed ✅
+
 
 ---
 
