@@ -808,4 +808,50 @@ HAVING TOTAL_STUDENTS>1
 +------+----------------+
 1 row in set (0.00 sec)
 
+mysql> select department, sum(marks) as total_marks 
+FROM students 
+WHERE city in ('Hyderabad' and 'Pune')
+ GROUP BY department
+ HAVING total_marks > 100
+ ORDER BY total_marks;
++------------+-------------+
+| department | total_marks |
++------------+-------------+
+| CSE        |         177 |
+| ECE        |         225 |
++------------+-------------+
+
+
+SELECT city,
+    ->        MAX(marks) AS highest_marks
+    -> FROM students
+    -> WHERE department = 'ECE'
+    -> GROUP BY city
+    -> HAVING highest_marks > 70
+    -> ORDER BY highest_marks;
++--------+---------------+
+| city   | highest_marks |
++--------+---------------+
+| Mumbai |            75 |
+| Pune   |            75 |
++--------+---------------+
+
+
+SELECT department,
+    ->        AVG(age) AS average_age
+    -> FROM students
+    -> WHERE city IS NOT NULL
+    -> GROUP BY department
+    -> HAVING average_age > 20
+    -> ORDER BY department;
++------------+-------------+
+| department | average_age |
++------------+-------------+
+| CSE        |     20.3333 |
+| ECE        |     21.6667 |
+| EEE        |     21.5000 |
+| MECH       |     22.0000 |
++------------+-------------+
+
+
 mysql> Terminal close -- exit!
