@@ -63,7 +63,10 @@ mysql> select category, sum(units_sold) as total_units_sold from sales group by 
 3 rows in set (0.00 sec)
 
 mysql> -- Total revnue per region where revenue > 50000
-mysql> select region, sum(unit_price * units_sold) as total_revenue from sales group by region having total_revenue > 50000;
+mysql> select region, sum(unit_price * units_sold) as total_revenue
+from sales 
+group by region 
+having total_revenue > 50000;
 +--------+---------------+
 | region | total_revenue |
 +--------+---------------+
@@ -75,7 +78,10 @@ mysql> select region, sum(unit_price * units_sold) as total_revenue from sales g
 4 rows in set (0.02 sec)
 
 mysql> -- count products per category with more than 2 products
-mysql> select category, count(product) as Products_count from sales group by category having Products_count > 2;
+mysql> select category, count(product) as Products_count
+from sales 
+group by category
+having Products_count > 2;
 +-------------+----------------+
 | category    | Products_count |
 +-------------+----------------+
@@ -85,11 +91,18 @@ mysql> select category, count(product) as Products_count from sales group by cat
 2 rows in set (0.00 sec)
 
 mysql> -- Avg unit price per category < 5000
-mysql> select category, avg(unit_price) as avg_unit_price from sales group by category having avg_unit_price < 5000;
+mysql> select category, avg(unit_price) as avg_unit_price 
+from sales 
+group by category 
+having avg_unit_price < 5000;
 Empty set (0.00 sec)
 
 mysql> -- Regions with more than 1 electronics product
-mysql> select region, count(product) as electronics_count from sales where category = 'electronics' group by region having electronics_count > 1;
+mysql> select region, count(product) as electronics_count
+from sales
+where category = 'electronics'
+group by region 
+having electronics_count > 1;
 +--------+-------------------+
 | region | electronics_count |
 +--------+-------------------+
@@ -99,7 +112,10 @@ mysql> select region, count(product) as electronics_count from sales where categ
 2 rows in set (0.00 sec)
 
 mysql> -- Categories and total units sold, ordered descending 
-mysql> select category, sum(units_sold) as total_units_sold from sales group by category order by total_units_sold desc;
+mysql> select category, sum(units_sold) as total_units_sold 
+from sales 
+group by category 
+order by total_units_sold desc;
 +---------------+------------------+
 | category      | total_units_sold |
 +---------------+------------------+
@@ -110,7 +126,10 @@ mysql> select category, sum(units_sold) as total_units_sold from sales group by 
 3 rows in set (0.00 sec)
 
 mysql> -- Avg unit price per region, ordered alphabetically
-mysql> select region, avg(unit_price) as avg_price from sales group by region order by region;
+mysql> select region, avg(unit_price) as avg_price 
+from sales 
+group by region
+order by region;
 +--------+------------+
 | region | avg_price  |
 +--------+------------+
@@ -122,7 +141,10 @@ mysql> select region, avg(unit_price) as avg_price from sales group by region or
 4 rows in set (0.00 sec)
 
 mysql> -- Total revenue per category, highest first
-mysql> select category, sum(units_sold * unit_price) as total_revenue from sales group by category order by total_revenue desc;
+mysql> select category, sum(units_sold * unit_price) as total_revenue
+from sales 
+group by category
+order by total_revenue desc;
 +---------------+---------------+
 | category      | total_revenue |
 +---------------+---------------+
@@ -133,7 +155,10 @@ mysql> select category, sum(units_sold * unit_price) as total_revenue from sales
 3 rows in set (0.00 sec)
 
 mysql> -- Count of products in each region , descending
-mysql> select region, count(product) as products_count from sales group by region order by products_count desc;
+mysql> select region, count(product) as products_count
+from sales 
+group by region 
+order by products_count desc;
 +--------+----------------+
 | region | products_count |
 +--------+----------------+
@@ -145,7 +170,10 @@ mysql> select region, count(product) as products_count from sales group by regio
 4 rows in set (0.00 sec)
 
 mysql> -- Region and total units sold, sorted by region
-mysql> select region, sum(units_sold) as total_units_sold from sales group by region order by region;
+mysql> select region, sum(units_sold) as total_units_sold
+from sales 
+group by region 
+order by region;
 +--------+------------------+
 | region | total_units_sold |
 +--------+------------------+
@@ -157,7 +185,11 @@ mysql> select region, sum(units_sold) as total_units_sold from sales group by re
 4 rows in set (0.00 sec)
 
 mysql> -- Total revenue per region > 20000, order by revenue desc
-mysql> select region, sum(units_sold * unit_price) as revenue from sales group by region having revenue > 20000 order by revenue desc;
+mysql> select region, sum(units_sold * unit_price) as revenue 
+from sales 
+group by region
+having revenue > 20000 
+order by revenue desc;
 +--------+---------+
 | region | revenue |
 +--------+---------+
@@ -169,7 +201,11 @@ mysql> select region, sum(units_sold * unit_price) as revenue from sales group b
 4 rows in set (0.00 sec)
 
 mysql> -- Total units sold per category > 10, order by category
-mysql> select category, sum(units_sold) as total_units_sold from sales group by category having total_units_sold > 10 order by category;
+mysql> select category, sum(units_sold) as total_units_sold 
+from sales 
+group by category
+having total_units_sold > 10 
+order by category;
 +---------------+------------------+
 | category      | total_units_sold |
 +---------------+------------------+
@@ -180,7 +216,11 @@ mysql> select category, sum(units_sold) as total_units_sold from sales group by 
 3 rows in set (0.00 sec)
 
 mysql> -- Count of products per region > 1, order alphabetically
-mysql> select region, count(product) as products_count from sales group by region having products_count > 1 order by region;
+mysql> select region, count(product) as products_count
+from sales
+group by region 
+having products_count > 1 
+order by region;
 +--------+----------------+
 | region | products_count |
 +--------+----------------+
@@ -192,11 +232,19 @@ mysql> select region, count(product) as products_count from sales group by regio
 4 rows in set (0.00 sec)
 
 mysql> -- Categories where avg price < 6000, order by avg price
-mysql> select category, avg(unit_price) as avg_price from sales group by category having avg_price < 6000 order by avg_price;
+mysql> select category, avg(unit_price) as avg_price
+from sales 
+group by category 
+having avg_price < 6000 
+order by avg_price;
 Empty set (0.00 sec)
 
 mysql> -- Avg units sold per category > 5, order by avg desc
-mysql> select category, avg(units_sold) as avg_units_sold from sales group by category having avg_units_sold > 5 order by avg_units_sold desc;
+mysql> select category, avg(units_sold) as avg_units_sold
+from sales
+group by category
+having avg_units_sold > 5 
+order by avg_units_sold desc;
 +---------------+----------------+
 | category      | avg_units_sold |
 +---------------+----------------+
@@ -207,7 +255,12 @@ mysql> select category, avg(units_sold) as avg_units_sold from sales group by ca
 3 rows in set (0.00 sec)
 
 mysql> -- Display the total units sold for each region considering only electronics products. show only regions where total units sold are greater than 15 and display the results in desc
-mysql> select region, sum(units_sold) as total_units_sold from sales where category = 'electronics' group by region having total_units_sold > 15 order by total_units_sold desc;
+mysql> select region, sum(units_sold) as total_units_sold 
+from sales
+where category = 'electronics' 
+group by region
+having total_units_sold > 15
+order by total_units_sold desc;
 +--------+------------------+
 | region | total_units_sold |
 +--------+------------------+
@@ -217,7 +270,12 @@ mysql> select region, sum(units_sold) as total_units_sold from sales where categ
 2 rows in set (0.00 sec)
 
 mysql> -- Display the total revenue generated by each category considering only products whose unit price is greater than2000. show only categories with revenue greater than 100000 and order by revenue in desc
-mysql> select category, sum(units_sold * unit_price) as total_revenue from sales where unit_price > 2000 group by category having total_revenue > 100000 order by total_revenue desc;
+mysql> select category, sum(units_sold * unit_price) as total_revenue 
+from sales 
+where unit_price > 2000
+group by category 
+having total_revenue > 100000
+order by total_revenue desc;
 +---------------+---------------+
 | category      | total_revenue |
 +---------------+---------------+
@@ -228,10 +286,20 @@ mysql> select category, sum(units_sold * unit_price) as total_revenue from sales
 3 rows in set (0.00 sec)
 
 mysql> -- Display the avg unit price of each region considering only products where units sold are >= 5. Show only regions where the avg price is greater than 5000 and order the results alphabetically
-mysql> select region, avg(unit_price) as avg_price from sales where units_sold >= 5 group by region having avg_price > 50000 order by region;
+mysql> select region, avg(unit_price) as avg_price
+from sales 
+where units_sold >= 5 
+group by region
+having avg_price > 50000
+order by region;
 Empty set (0.00 sec)
 
-mysql> select region, avg(unit_price) as avg_price from sales where units_sold >= 5 group by region having avg_price > 5000 order by region;
+mysql> select region, avg(unit_price) as avg_price 
+from sales 
+where units_sold >= 5 
+group by region 
+having avg_price > 5000 
+order by region;
 +--------+------------+
 | region | avg_price  |
 +--------+------------+
@@ -242,7 +310,12 @@ mysql> select region, avg(unit_price) as avg_price from sales where units_sold >
 3 rows in set (0.00 sec)
 
 mysql> -- Display the count of products in each category considering only products sold in the north and south regions. Show only categories having more than 2 products and sort the count in desc
-mysql> select category, count(product) as products_count from sales where region in ('North', 'South') group by category having  products_count > 2 order by products_count desc;
+mysql> select category, count(product) as products_count
+from sales 
+where region in ('North', 'South') 
+group by category 
+having  products_count > 2 
+order by products_count desc;
 +-------------+----------------+
 | category    | products_count |
 +-------------+----------------+
@@ -252,7 +325,11 @@ mysql> select category, count(product) as products_count from sales where region
 2 rows in set (0.00 sec)
 
 mysql> -- Display the total revenue generated in each region considering only products whose unit price is less than 10000. Show  only regions having revenue greater than 50000 and display the results in descending order of revenue 
-mysql> select region, sum(units_sold * unit_price) as revenue from sales where unit_price < 10000 group by region having revenue > 50000 order by revenue desc;
+mysql> select region, sum(units_sold * unit_price) as revenue 
+from sales
+where unit_price < 10000 
+group by region having revenue > 50000 
+order by revenue desc;
 +--------+---------+
 | region | revenue |
 +--------+---------+
