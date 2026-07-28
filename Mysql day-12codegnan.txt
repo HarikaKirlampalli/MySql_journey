@@ -51,6 +51,27 @@ mysql> SELECT*FROM SALES;
 |      15 | Mobile     | Electronics   |         14 |      20000 | North  |
 +---------+------------+---------------+------------+------------+--------+
 15 rows in set (0.01 sec)
+mysql> SELECT*FROM SALES;
++---------+------------+---------------+------------+------------+--------+
+| sale_id | product    | category      | units_sold | unit_price | region |
++---------+------------+---------------+------------+------------+--------+
+|       1 | Keyboard   | Electronics   |         10 |       1200 | North  |
+|       2 | Monitor    | Electronics   |          5 |       7000 | South  |
+|       3 | Chair      | Furniture     |         15 |       2500 | North  |
+|       4 | Desk       | Furniture     |          7 |       4500 | West   |
+|       5 | Mouse      | Electronics   |         20 |        800 | East   |
+|       6 | Sofa       | Furniture     |          3 |      15000 | South  |
+|       7 | Headphones | Electronics   |          8 |       1800 | North  |
+|       8 | Laptop     | Electronics   |          6 |      55000 | West   |
+|       9 | Table      | Furniture     |         12 |       6000 | East   |
+|      10 | Fan        | HomeAppliance |         18 |       3000 | South  |
+|      11 | AC         | HomeAppliance |          4 |      35000 | North  |
+|      12 | Cupboard   | Furniture     |          5 |      12000 | West   |
+|      13 | Printer    | Electronics   |          9 |       9000 | East   |
+|      14 | Bed        | Furniture     |          2 |      25000 | South  |
+|      15 | Mobile     | Electronics   |         14 |      20000 | North  |
++---------+------------+---------------+------------+------------+--------+
+15 rows in set (0.01 sec)
 mysql> -- Total units sold per category where total units > 20
 mysql> select category, sum(units_sold) as total_units_sold from sales group by category having total_units_sold > 20;
 +---------------+------------------+
@@ -324,7 +345,12 @@ order by products_count desc;
 +-------------+----------------+
 2 rows in set (0.00 sec)
 
+<<<<<<< HEAD
 mysql> -- Display the total revenue generated in each region considering only products whose unit price is less than 10000. Show  only regions having revenue greater than 50000 and display the results in descending order of revenue 
+=======
+mysql> -- Display the total revenue generated in each region considering only products whose unit price is less than 10000. 
+Show  only regions having revenue greater than 50000 and display the results in descending order of revenue 
+>>>>>>> ce6bbd4 ( Mysql day-13codegnan.txt)
 mysql> select region, sum(units_sold * unit_price) as revenue 
 from sales
 where unit_price < 10000 
@@ -338,7 +364,6 @@ order by revenue desc;
 | North  |   63900 |
 +--------+---------+
 3 rows in set (0.00 sec)
-
 
 SET OPERATORS
 -----------------------------

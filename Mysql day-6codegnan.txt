@@ -1,26 +1,7 @@
 
 mysql> use da4;
 Database changed
-mysql> CREATE TABLE EMPLOYEES(
-    -> EMPID INT AUTO_INCREMENT PRIMARY KEY,
-    -> NAME VARCHAR(20),
-    -> DEPARTMENT VARCHAR(30)
-    -> );
-Query OK, 0 rows affected (0.05 sec)
 
-mysql> DESC EMPLOYEES;
-+-----------+--------------+------+-----+---------+-------+
-| Field     | Type         | Null | Key | Default | Extra |
-+-----------+--------------+------+-----+---------+-------+
-| EMPID     | char(5)      | YES  |     | NULL    |       |
-| FIRSTNAME | varchar(30)  | YES  |     | NULL    |       |
-| LASTNAME  | varchar(100) | YES  |     | NULL    |       |
-| AGE       | int          | YES  |     | NULL    |       |
-| DOJ       | date         | YES  |     | NULL    |       |
-| ADDRESS   | tinytext     | YES  |     | NULL    |       |
-| DEPT      | varchar(50)  | YES  |     | NULL    |       |
-+-----------+--------------+------+-----+---------+-------+
-7 rows in set (0.01 sec)
 mysql> CREATE TABLE STAFF(
     -> EMPID INT AUTO_INCREMENT PRIMARY KEY,
     -> NAME VARCHAR(20),

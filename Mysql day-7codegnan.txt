@@ -186,7 +186,7 @@ Your money is not lost.
 
 
 **WHAT IS LOCKIING?
-Locking is a mechanisam used by the database to control concurrent access data.
+Locking is a mechanism used by the database to control concurrent access data.
 
 It ensures that multiple users access the same data simultaneously the database maintains consistency, integrity, and prevent conflicts.
 
@@ -458,6 +458,19 @@ mysql> SELECT*FROM EMPLOYEE WHERE EMP_ID=101 FOR UPDATE;
 
 mysql> COMMIT;
 Query OK, 0 rows affected (0.00 sec)
+
+
+| Command                 | Purpose                                           |
+| ----------------------- | ------------------------------------------------- |
+| `START TRANSACTION`     | Start a transaction                               |
+| `COMMIT`                | Save changes permanently                          |
+| `ROLLBACK`              | Undo all changes after the transaction started    |
+| `SAVEPOINT sp1`         | Create a checkpoint inside a transaction          |
+| `ROLLBACK TO sp1`       | Undo changes only up to the savepoint             |
+| `LOCK TABLE ... WRITE`  | Only the current session can read/write the table |
+| `LOCK TABLE ... READ`   | Allow reading, block writing                      |
+| `UNLOCK TABLES`         | Remove table locks                                |
+| `SELECT ... FOR UPDATE` | Lock selected rows until commit/rollback          |
 
 mysql> Terminal close -- exit!
 
