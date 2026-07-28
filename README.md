@@ -170,6 +170,22 @@ This repository contains my daily MySQL notes and practice completed during my C
 - Student Database Queries
 Day 12 Completed ✅
 
+## 📅 Day 13 – MySQL String & Numeric Functions
+
+### Topics Covered
+* Numeric Functions (ABS, CEIL, FLOOR, ROUND, MOD, POW, SQRT, LOG, LOG2, LOG10, RADIANS, DEGREES, SIGN, RAND, GREATEST, LEAST, PI, TRUNCATE, BIT_COUNT, OCT, BIN)
+* String Functions (CONCAT, CONCAT_WS, UPPER, LOWER, SUBSTRING, SUBSTRING_INDEX, LENGTH, CHAR_LENGTH, REPLACE, TRIM, POSITION, INSTR, LEFT, RIGHT, REVERSE, LPAD, RPAD, ASCII)
+* Pattern Matching using `LIKE`
+* Real-time Employee Database Practice
+* Email Manipulation and String Extraction Queries
+### Practice Highlights
+* Performed string manipulation using built-in MySQL functions.
+* Worked with employee records to perform filtering, formatting, and email processing.
+* Practiced real-world SQL interview questions using string functions and pattern matching.
+
+📂 This folder contains all SQL queries and outputs covered during Day 13 of my MySQL learning journey.
+
+
 
 ---
 
