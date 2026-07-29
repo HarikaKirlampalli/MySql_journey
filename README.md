@@ -183,10 +183,29 @@ Day 12 Completed ✅
 * Worked with employee records to perform filtering, formatting, and email processing.
 * Practiced real-world SQL interview questions using string functions and pattern matching.
 
-📂 This folder contains all SQL queries and outputs covered during Day 13 of my MySQL learning journey.
+# 📅 Day 14 - MySQL Date & Time Functions
 
+## 📌 Topics Covered
+- CURDATE(), CURTIME(), NOW()
+- DATE() & TIME()
+- YEAR(), MONTH(), DAY(), WEEK(), DAYOFWEEK()
+- DATE_ADD() & DATE_SUB()
+- DATEDIFF()
+- DATE_FORMAT()
+- LAST_DAY(), MONTHNAME(), DAYNAME(), QUARTER()
+- TIME_TO_SEC() & SEC_TO_TIME()
+- SYSDATE()
 
-
+## 💻 Hands-on Practice
+- Created the `employee_attendance` table.
+- Inserted employee attendance records with date and time values.
+- Extracted date and time from DATETIME columns.
+- Retrieved joining year, birth month, birth day, and joining week.
+- Added and subtracted dates using `DATE_ADD()` and `DATE_SUB()`.
+- Formatted dates using `DATE_FORMAT()`.
+- Used functions like `LAST_DAY()`, `MONTHNAME()`, `DAYNAME()`, and `QUARTER()`.
+- Converted time to seconds and seconds back to time.
+- Solved real-time SQL queries using MySQL Date & Time Functions.
 ---
 
 ## 🛠 Tools Used
