@@ -770,13 +770,13 @@ mysql> select * from students order by marks asc limit 1;
 
 EXECUTION ORDER FOR CLAUSES
 -----------------------------------------------------
-FROM
-WHERE
-GROUP BY
-HAVING
-ORDER BY
-LIMIT 
-
+SELECT __________
+FROM __________
+WHERE __________
+GROUP BY __________
+HAVING __________
+ORDER BY __________
+LIMIT ;
 
 SELECT DEPARTMENT,
 AVG(MARKS)AS AVERAGE_MARKS
@@ -852,6 +852,17 @@ SELECT department,
 | EEE        |     21.5000 |
 | MECH       |     22.0000 |
 +------------+-------------+
+
+| Clause   | Work                                     |
+| -------- | ---------------------------------------- |
+| SELECT   | Emi data kavalo select chestundi         |
+| FROM     | E table nundi data theestundo chepthundi |
+| WHERE    | Condition apply chestundi                |
+| ORDER BY | Data ni sort chestundi                   |
+| GROUP BY | Same values ni group chestundi           |
+| HAVING   | Groups meeda condition apply chestundi   |
+| LIMIT    | Enni rows kavalo decide chestundi        |
+
 
 
 mysql> Terminal close -- exit!
