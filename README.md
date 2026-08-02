@@ -206,6 +206,27 @@ Day 12 Completed ✅
 - Used functions like `LAST_DAY()`, `MONTHNAME()`, `DAYNAME()`, and `QUARTER()`.
 - Converted time to seconds and seconds back to time.
 - Solved real-time SQL queries using MySQL Date & Time Functions.
+
+- 📅 Day 15 – MySQL Journey 🚀
+
+Today, I learned one of the most important concepts in MySQL: **JOINS** and **VIEWS**.
+✅ Learned the purpose of JOINS and why they are used.
+✅ Practiced all types of JOINS:
+• INNER JOIN
+• LEFT JOIN
+• RIGHT JOIN
+• FULL JOIN (using UNION)
+• CROSS JOIN
+• SELF JOIN
+✅ Understood the concept of VIEWS.
+✅ Learned the advantages of Views.
+✅ Practiced:
+• CREATE VIEW
+• ALTER VIEW
+• DROP VIEW
+Every day of practice is improving my SQL skills and strengthening my database knowledge. Looking forward to learning more! 💻
+
+#MySQL #SQL #Database #Codegnan #DataAnalytics #LearningJourney #100DaysOfCode #GitHub #OpenToWork #Programming
 ---
 
 ## 🛠 Tools Used
