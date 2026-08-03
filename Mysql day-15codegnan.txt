@@ -374,7 +374,7 @@ mysql> select p.project_name,e.name
 11 rows in set (0.00 sec)
 
 mysql> -- list all employees and the departments they belong to using right join
-mysql> -- Full Join
+mysql> -- Full JOIN
 mysql> select e.name,d.department_name
     -> from employees e
     -> left join departments d
@@ -403,7 +403,8 @@ CROSS JOIN departments d;
 --------------------
 1. What is a VIEW?
 >> A view is a virtual table in MySQL . Built from the result of stored select statement. It looks and behaves like regular table when you query it.
->>You can select from it,filter it and join it. but it doesn't store any data on its own. every time view is queried, Mysql runs its underlying select statement against in real tables and returns the result..
+>>You can select from it,filter it and join it. but it doesn't store any data on its own. every time view is queried,
+ Mysql runs its underlying select statement against in real tables and returns the result..
 
 Why do we need views?
 ------------------------------------
@@ -438,6 +439,8 @@ Dropping VIEWS
 ---------------------------
 drop view view_name
 drop view if exists view_name;
+
+
 mysql> show tables;
 +---------------------+
 | Tables_in_da4       |
@@ -688,3 +691,14 @@ mysql> SELECT TABLE_NAME
 3 rows in set (0.00 sec)
 
 mysql> Terminal close -- exit!
+
+
+
+
+
+
+
+
+
+
+
