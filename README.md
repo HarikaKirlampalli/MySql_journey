@@ -224,9 +224,20 @@ Today, I learned one of the most important concepts in MySQL: **JOINS** and **VI
 • CREATE VIEW
 • ALTER VIEW
 • DROP VIEW
-Every day of practice is improving my SQL skills and strengthening my database knowledge. Looking forward to learning more! 💻
 
-#MySQL #SQL #Database #Codegnan #DataAnalytics #LearningJourney #100DaysOfCode #GitHub #OpenToWork #Programming
+📅 Day 16 – MySQL Journey 🚀
+Today, I learned about **Sub Queries** in MySQL.
+✅ Learned the purpose and syntax of Sub Queries.
+✅ Studied different types of Sub Queries:
+• Single Row Sub Query
+• Multi Row Sub Query (IN, ANY/SOME, ALL)
+• Nested Sub Query
+• Correlated Sub Query
+• EXISTS & NOT EXISTS
+✅ Understood how subqueries simplify complex SQL problems.
+✅ Learned when to use comparison operators, IN, ANY, ALL, EXISTS, and NOT EXISTS.
+✅ Practiced writing nested queries and understood their execution flow.
+
 ---
 
 ## 🛠 Tools Used
