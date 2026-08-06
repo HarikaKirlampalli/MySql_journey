@@ -207,36 +207,77 @@ Day 12 Completed ✅
 - Converted time to seconds and seconds back to time.
 - Solved real-time SQL queries using MySQL Date & Time Functions.
 
-- 📅 Day 15 – MySQL Journey 🚀
+- ## 📅 Day 15 – JOINS & VIEWS
+Today, I explored two important MySQL concepts: **JOINS** and **VIEWS**.
+### 📚 What I Learned
+- Understood why JOINS are used to combine data from multiple tables.
+- Learned different types of JOINS:
+  - INNER JOIN
+  - LEFT JOIN
+  - RIGHT JOIN
+  - FULL JOIN (using UNION)
+  - CROSS JOIN
+  - SELF JOIN
+- Learned the concept of VIEWS and their advantages.
+- Understood how Views simplify complex SQL queries and improve reusability.
 
-Today, I learned one of the most important concepts in MySQL: **JOINS** and **VIEWS**.
-✅ Learned the purpose of JOINS and why they are used.
-✅ Practiced all types of JOINS:
-• INNER JOIN
-• LEFT JOIN
-• RIGHT JOIN
-• FULL JOIN (using UNION)
-• CROSS JOIN
-• SELF JOIN
-✅ Understood the concept of VIEWS.
-✅ Learned the advantages of Views.
-✅ Practiced:
-• CREATE VIEW
-• ALTER VIEW
-• DROP VIEW
+## 📅 Day 16 – Sub Queries
+Today, I learned one of the most powerful SQL concepts: **Sub Queries**.
+### 📚 What I Learned
+- Understood what a Sub Query is and why it is used.
+- Explored different types of Sub Queries:
+  - Single Row Sub Query
+  - Multi Row Sub Query (IN)
+  - Multi Row Sub Query (ANY / SOME)
+  - Multi Row Sub Query (ALL)
+  - Nested Sub Query
+  - Correlated Sub Query
+  - EXISTS & NOT EXISTS
 
-📅 Day 16 – MySQL Journey 🚀
-Today, I learned about **Sub Queries** in MySQL.
-✅ Learned the purpose and syntax of Sub Queries.
-✅ Studied different types of Sub Queries:
-• Single Row Sub Query
-• Multi Row Sub Query (IN, ANY/SOME, ALL)
-• Nested Sub Query
-• Correlated Sub Query
-• EXISTS & NOT EXISTS
-✅ Understood how subqueries simplify complex SQL problems.
-✅ Learned when to use comparison operators, IN, ANY, ALL, EXISTS, and NOT EXISTS.
-✅ Practiced writing nested queries and understood their execution flow.
+# Day 17 – MySQL Journey 🚀
+## 📚 Topics Covered
+- Advanced SQL Query Practice
+- Nested Subqueries
+- Correlated Subqueries
+- EXISTS Subqueries
+- Aggregate Functions
+- Finding 2nd & 3rd Highest/Lowest Salary
+- Real-world SQL Queries using World Database
+- Stored Procedures
+- DELIMITER
+- CREATE PROCEDURE
+- CALL Statement
+- SHOW PROCEDURE STATUS
+
+# 📅 Day 18 – MySQL Stored Procedures & Triggers
+Today I learned advanced MySQL concepts by creating and executing Stored Procedures and Triggers.
+## 📚 Topics Covered
+### ✅ Stored Procedures
+- Creating Stored Procedures
+- Executing Procedures using CALL
+- Viewing Procedures using SHOW PROCEDURE STATUS
+- Dropping Procedures
+### ✅ Procedure Parameters
+- IN Parameter
+- OUT Parameter
+- INOUT Parameter
+### ✅ Procedures Implemented
+- Department Wise Employee Count
+- Get Employee by ID
+- Get Employees by Department
+- Employees by Department & Experience
+- Salary Range Filter
+- Total Employees (OUT Parameter)
+- Total IT Employees (OUT Parameter)
+- Add Bonus using INOUT Parameter
+### ✅ Trigger Concepts
+- Introduction to Triggers
+- BEFORE INSERT Trigger
+- Using NEW keyword
+- Validation using SIGNAL SQLSTATE
+- Converting Employee Names to UPPERCASE automatically
+- Viewing Triggers using SHOW TRIGGERS
+
 
 ---
 
