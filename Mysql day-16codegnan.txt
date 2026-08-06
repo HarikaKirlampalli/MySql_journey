@@ -115,7 +115,8 @@ where column=(select column
 
 4. Corelated subquery
 --------------------------------
-corelated subqueries are subqueries that reference column from the outer query. unlike regular subqueries that are execute once. corelated subqueries execute once for each row proceed by the outer subquery.
+corelated subqueries are subqueries that reference column from the outer query. unlike regular subqueries that are execute once. 
+corelated subqueries execute once for each row proceed by the outer subquery.
 
 Chracterstics
 -----------------------
@@ -1190,11 +1191,6 @@ mysql> select emp_name
 3 rows in set (0.01 sec)
 
 mysql> -- find cities in the same country as 'new york'
-mysql> select name,population,
-    -> from city
-    -> where countrycode=(select countrycode from city where name='new york');
-ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'from city
-where countrycode=(select countrycode from city where name='new york')' at line 2
 mysql> select name,population
     -> from city
     -> where countrycode=(select countrycode from city where name='new york');

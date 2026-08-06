@@ -1,0 +1,284 @@
+mysql> use da4;
+Database changed
+mysql> select*from employees;
++--------+----------+------------+----------+------------+-----------+
+| emp_id | emp_name | department | salary   | experience | city      |
++--------+----------+------------+----------+------------+-----------+
+|    101 | Rahul    | IT         | 65000.00 |          5 | Hyderabad |
+|    102 | Priya    | HR         | 45000.00 |          3 | Chennai   |
+|    103 | Amit     | Finance    | 70000.00 |          6 | Bangalore |
+|    104 | Sneha    | IT         | 80000.00 |          8 | Hyderabad |
+|    105 | Kiran    | Sales      | 40000.00 |          2 | Pune      |
+|    106 | Ravi     | HR         | 50000.00 |          4 | Mumbai    |
+|    107 | Anjali   | IT         | 90000.00 |         10 | Delhi     |
+|    108 | Suresh   | Finance    | 55000.00 |          5 | Chennai   |
+|    109 | Divya    | Sales      | 48000.00 |          3 | Hyderabad |
+|    110 | Vikram   | IT         | 75000.00 |          7 | Bangalore |
++--------+----------+------------+----------+------------+-----------+
+10 rows in set (0.01 sec)
+
+mysql> DELIMITER //
+mysql> CREATE PROCEDURE DEPARTMENTWISECOUNT()
+    -> BEGIN
+    -> SELECT DEPARTMENT,
+    -> COUNT(*)AS TOTALEMPLOYEES
+    -> FROM EMPLOYEES
+    -> GROUP BY DEPARTMENT;
+    -> END // 
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> DELIMITER ;
+mysql> CALL DEPARTMENTWISECOUNT();
++------------+----------------+
+| DEPARTMENT | TOTALEMPLOYEES |
++------------+----------------+
+| IT         |              4 |
+| HR         |              2 |
+| Finance    |              2 |
+| Sales      |              2 |
++------------+----------------+
+4 rows in set (0.00 sec)
+
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> SHOW PROCEDURE STATUS
+    -> WHERE DB = 'DA4';
++------+---------------------+-----------+----------------+---------------------+---------------------+---------------+---------+----------------------+----------------------+--------------------+
+| Db   | Name                | Type      | Definer        | Modified            | Created             | Security_type | Comment | character_set_client | collation_connection | Database Collation |
++------+---------------------+-----------+----------------+---------------------+---------------------+---------------+---------+----------------------+----------------------+--------------------+
+| da4  | DEPARTMENTWISECOUNT | PROCEDURE | root@localhost | 2026-08-05 09:06:16 | 2026-08-05 09:06:16 | DEFINER       |         | cp850                | cp850_general_ci     | utf8mb4_0900_ai_ci |
+| da4  | GETALLEMPLOYEES     | PROCEDURE | root@localhost | 2026-08-04 10:55:33 | 2026-08-04 10:55:33 | DEFINER       |         | cp850                | cp850_general_ci     | utf8mb4_0900_ai_ci |
+| da4  | GETITEAMPLOYEES     | PROCEDURE | root@localhost | 2026-08-04 11:02:58 | 2026-08-04 11:02:58 | DEFINER       |         | cp850                | cp850_general_ci     | utf8mb4_0900_ai_ci |
++------+---------------------+-----------+----------------+---------------------+---------------------+---------------+---------+----------------------+----------------------+--------------------+
+3 rows in set (0.01 sec)
+
+mysql> -- IN PARAMETERS
+mysql> -- EMPLOYEE BY ID
+mysql> DELIMITER //
+mysql> CREATE PROCEDURE GETEMPLOYEEBYID(IN EID INT)
+    -> BEGIN
+    -> SELECT*FROM EMPLOYEES;
+    -> WHERE EMP_ID=EID;
+    -> END //
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'WHERE EMP_ID=EID;
+END' at line 4
+mysql> DELIMITER //
+mysql> CREATE PROCEDURE GETEMPLOYEEBYID(IN EID INT)
+    -> BEGIN
+    -> SELECT*FROM EMPLOYEES
+    -> WHERE EMP_ID=EID;
+    -> END //
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> DELIMITER ;
+mysql> CALL GETEMPLOYEEBYID(101);
++--------+----------+------------+----------+------------+-----------+
+| emp_id | emp_name | department | salary   | experience | city      |
++--------+----------+------------+----------+------------+-----------+
+|    101 | Rahul    | IT         | 65000.00 |          5 | Hyderabad |
++--------+----------+------------+----------+------------+-----------+
+1 row in set (0.01 sec)
+
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> DELIMITER //
+mysql> CREATE PROCEDURE GETEMPLOYEESBYDEPARTMENT(IN DEPT VARCHAR(30))
+    -> BEGIN
+    -> SELECT*FROM EMPLOYEES
+    -> WHERE DEPARTMENT=DEPT;
+    -> END //
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> DELIMITER ;
+mysql> CALL GETEMPLOYEESBYDEPARTMENT('IT');
++--------+----------+------------+----------+------------+-----------+
+| emp_id | emp_name | department | salary   | experience | city      |
++--------+----------+------------+----------+------------+-----------+
+|    101 | Rahul    | IT         | 65000.00 |          5 | Hyderabad |
+|    104 | Sneha    | IT         | 80000.00 |          8 | Hyderabad |
+|    107 | Anjali   | IT         | 90000.00 |         10 | Delhi     |
+|    110 | Vikram   | IT         | 75000.00 |          7 | Bangalore |
++--------+----------+------------+----------+------------+-----------+
+4 rows in set (0.00 sec)
+
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> DELIMITER //
+mysql> CREATE PROCEDURE salaryRange(IN minSal DECIMAL(10,2), IN maxSal DECIMAL(10,2))
+    -> BEGIN
+    -> SELECT*FROM EMPLOYEES
+    -> WHERE SALARY BETWEEN minSal AND maxSal;
+    -> END //
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> DELIMITER //
+mysql> CALL salaryRange(40000,70000);
+    -> ^C
+mysql> DELIMITER ;
+mysql> CALL salaryRange(40000,70000);
++--------+----------+------------+----------+------------+-----------+
+| emp_id | emp_name | department | salary   | experience | city      |
++--------+----------+------------+----------+------------+-----------+
+|    101 | Rahul    | IT         | 65000.00 |          5 | Hyderabad |
+|    102 | Priya    | HR         | 45000.00 |          3 | Chennai   |
+|    103 | Amit     | Finance    | 70000.00 |          6 | Bangalore |
+|    105 | Kiran    | Sales      | 40000.00 |          2 | Pune      |
+|    106 | Ravi     | HR         | 50000.00 |          4 | Mumbai    |
+|    108 | Suresh   | Finance    | 55000.00 |          5 | Chennai   |
+|    109 | Divya    | Sales      | 48000.00 |          3 | Hyderabad |
++--------+----------+------------+----------+------------+-----------+
+7 rows in set (0.00 sec)
+
+Query OK, 0 rows affected (0.11 sec)
+
+mysql> select*from employees;
++--------+----------+------------+----------+------------+-----------+
+| emp_id | emp_name | department | salary   | experience | city      |
++--------+----------+------------+----------+------------+-----------+
+|    101 | Rahul    | IT         | 65000.00 |          5 | Hyderabad |
+|    102 | Priya    | HR         | 45000.00 |          3 | Chennai   |
+|    103 | Amit     | Finance    | 70000.00 |          6 | Bangalore |
+|    104 | Sneha    | IT         | 80000.00 |          8 | Hyderabad |
+|    105 | Kiran    | Sales      | 40000.00 |          2 | Pune      |
+|    106 | Ravi     | HR         | 50000.00 |          4 | Mumbai    |
+|    107 | Anjali   | IT         | 90000.00 |         10 | Delhi     |
+|    108 | Suresh   | Finance    | 55000.00 |          5 | Chennai   |
+|    109 | Divya    | Sales      | 48000.00 |          3 | Hyderabad |
+|    110 | Vikram   | IT         | 75000.00 |          7 | Bangalore |
++--------+----------+------------+----------+------------+-----------+
+10 rows in set (0.00 sec)
+
+mysql> -- department experiance in nrml form
+mysql> select*from eamployees where department='it' and experiance>5;
+ERROR 1146 (42S02): Table 'da4.eamployees' doesn't exist
+mysql> select*from employees where department='it' and experiance>5;
+ERROR 1054 (42S22): Unknown column 'experiance' in 'where clause'
+mysql> select*from employees where department='it' and experience>5;
++--------+----------+------------+----------+------------+-----------+
+| emp_id | emp_name | department | salary   | experience | city      |
++--------+----------+------------+----------+------------+-----------+
+|    104 | Sneha    | IT         | 80000.00 |          8 | Hyderabad |
+|    107 | Anjali   | IT         | 90000.00 |         10 | Delhi     |
+|    110 | Vikram   | IT         | 75000.00 |          7 | Bangalore |
++--------+----------+------------+----------+------------+-----------+
+3 rows in set (0.00 sec)
+
+mysql> -- now in procedure form 
+mysql> DELIMITER //
+mysql> CREATE PROCEDURE DEPTEXPERIENCE(IN DEPT VARCHAR(30), IN EXP INT)
+    -> BEGIN
+    -> SELECT*FROM EMPLOYEES
+    -> WHERE DEPARTMENT=DEPT
+    -> AND EXPERIENCE>=EXP;
+    -> END //
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> DELIMITER ;
+mysql> CALL DEPTEXPERIENCE('IT',5);
++--------+----------+------------+----------+------------+-----------+
+| emp_id | emp_name | department | salary   | experience | city      |
++--------+----------+------------+----------+------------+-----------+
+|    101 | Rahul    | IT         | 65000.00 |          5 | Hyderabad |
+|    104 | Sneha    | IT         | 80000.00 |          8 | Hyderabad |
+|    107 | Anjali   | IT         | 90000.00 |         10 | Delhi     |
+|    110 | Vikram   | IT         | 75000.00 |          7 | Bangalore |
++--------+----------+------------+----------+------------+-----------+
+4 rows in set (0.00 sec)
+
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> -- OUT PARAMETER
+mysql> DELIMITER //
+mysql> CREATE PROCEDURE TOTALEMPLOYEES(OUT total INT)
+    -> BEGIN
+    -> SELECT COUNT(*)INTO TOTAL
+    -> FROM EMPLOYEES;
+    -> END //
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> DELIMITER ;
+mysql> CALL TOTALEMPLOYEES(@TOTAL);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> SELECT@TOTAL;
++--------+
+| @TOTAL |
++--------+
+|     10 |
++--------+
+1 row in set (0.00 sec)
+
+mysql> DELIMITER //
+mysql> CREATE PROCEDURE ITEMPCOUNT(OUT total INT)
+    -> BEGIN
+    -> SELECT COUNT(*)INTO TOTAL
+    -> FROM EMPLOYEES
+    -> WHERE DEPARTMENT='IT';
+    -> END //
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> DELIMITER ;
+mysql> CALL ITEMPCOUNT(@COUNT);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> SELECT@COUNT;
++--------+
+| @COUNT |
++--------+
+|      4 |
++--------+
+1 row in set (0.00 sec)
+
+mysql> -- INOUT PARAMETERS
+mysql> DELIMITER //
+mysql> CREATE PROCEDURE AddBONUS(IN EMPID INT,
+    ->                               INOUT BONUS DECIMAL(10,2))     
+    -> BEGIN
+    -> UPDATE EMPLOYEES
+    -> SET SALARY = SALARY+BONUS
+    -> WHERE EMP_ID=EMPID;
+    -> 
+    -> SELECT SALARY
+    -> INTO BONUS
+    -> FROM EMPLOYEES
+    -> WHERE EMP_ID = EMPID;
+    -> END //
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> DELIMITER ;
+mysql> SET @B=5000;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> CALL ADDBONUS(101,@B);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> SELECT @B;
++----------+
+| @B       |
++----------+
+| 70000.00 |
++----------+
+1 row in set (0.00 sec)
+
+
+**Introduction to TRIGGERS
+------------------------------------------
+A Triggers is a special type of stored program that automatically executes in a response to a specific event 
+INSERT,DELETE or UPDATE -----> occurring on a specified table. unlike a stored procedure. a trigger is never called directly.
+The database engine invokes it automatically when the trigger event happens.
+
+Syntax
+-----------
+DELIMITER //
+CREATE TRIGGER trigger_name
+{BEFORE | AFTER} {INSERT | UPDATE | DELETE}
+ON table_name
+FOR EACH ROW
+BEGIN
+    -- trigger logic
+    -- use NEW.column_name for inserted/updated values
+    -- use OLD column_name  for deleted/previous values
+END // 
+DELIMITER ;
+
+mysql>
