@@ -654,7 +654,7 @@ WHERE Db = 'da4';
 
 mysql> SHOW TABLES;
 +-----------------+
-| Tables_in_pfs04 |
+| Tables_in_da4 |
 +-----------------+
 | city            |
 | country         |
@@ -764,7 +764,7 @@ mysql> CALL GETALLIT();
 Query OK, 0 rows affected (0.03 sec)
 
 mysql> SHOW PROCEDURE STATUS
-    -> WHERE Db = 'PFS04';
+    -> WHERE Db = 'da4';
 +-------+-----------+-----------+----------------+---------------------+---------------------+---------------+---------+----------------------+----------------------+--------------------+
 | Db    | Name      | Type      | Definer        | Modified            | Created             | Security_type | Comment | character_set_client | collation_connection | Database Collation |
 +-------+-----------+-----------+----------------+---------------------+---------------------+---------------+---------+----------------------+----------------------+--------------------+
